@@ -1,0 +1,59 @@
+<div class="container">
+
+  <h1>Registrar Movimiento de Inventario</h1>
+
+  <mat-card>
+    <mat-card-content>
+
+      <form [formGroup]="movimientoForm" (ngSubmit)="registrar()">
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Producto</mat-label>
+          <mat-select formControlName="producto_id">
+            <mat-option *ngFor="let prod of productos" [value]="prod.id">
+              {{ prod.nombre }} ({{ prod.codigo }})
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="movimientoForm.get('producto_id')?.invalid">
+            Producto requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Tipo de Movimiento</mat-label>
+          <mat-select formControlName="tipo_movimiento">
+            <mat-option value="entrada">Entrada</mat-option>
+            <mat-option value="salida">Salida</mat-option>
+            <mat-option value="ajuste">Ajuste</mat-option>
+          </mat-select>
+          <mat-error *ngIf="movimientoForm.get('tipo_movimiento')?.invalid">
+            Tipo requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Cantidad</mat-label>
+          <input matInput type="number" formControlName="cantidad">
+          <mat-error *ngIf="movimientoForm.get('cantidad')?.invalid">
+            Cantidad válida requerida
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Motivo</mat-label>
+          <textarea matInput rows="3" formControlName="motivo"></textarea>
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit">
+          Registrar Movimiento
+        </button>
+
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+
+</div>

@@ -1,0 +1,27 @@
+.container {
+  padding: 24px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+h1 {
+  margin-bottom: 16px;
+}
+
+/* Chips por tipo de movimiento */
+.chip-entrada {
+  background-color: #4caf50;
+  color: white;
+}
+
+.chip-salida {
+  background-color: #f44336;
+  color: white;
+}
+
+.chip-ajuste {
+  background-color: #ff9800;
+  color: white;
+}

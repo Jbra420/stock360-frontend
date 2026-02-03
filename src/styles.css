@@ -1,1 +1,162 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import 'ngx-toastr/toastr';
+
+/* Variables globales */
+:root {
+  --bg: #0b0f1a;
+  --panel: rgba(18, 26, 54, 0.55);
+  --panel-solid: #121a36;
+
+  --text: #eaeaf0;
+  --muted: rgba(234, 234, 240, 0.72);
+
+  --primary: #7c4dff;
+  --accent: #00e5ff;
+  --warn: #f44336;
+
+  --border: rgba(124, 77, 255, 0.25);
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Evita que Angular Material fuerce fondo blanco en contenedores */
+.mat-drawer-container,
+.mat-sidenav-container,
+.mat-sidenav-content,
+.mat-drawer-content,
+.mat-app-background {
+  background: transparent !important;
+}
+
+/* =========================
+   UTILIDADES
+   ========================= */
+.full-width { width: 100%; }
+.text-center { text-align: center; }
+
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }
+
+/* =========================
+   CONTENEDORES
+   ========================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* =========================
+   CARDS (base estilo neón)
+   ========================= */
+.app-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.app-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 229, 255, 0.28);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================
+   METRIC CARDS (dashboard)
+   ========================= */
+.metric-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.metric-card h3 {
+  margin: 0 0 5px 0;
+  color: var(--muted);
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.metric-card .value {
+  font-size: 2.5em;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.metric-card.stock-bajo .value { color: var(--warn); }
+.metric-card.inventario .value { color: var(--primary); }
+
+/* =========================
+   MATERIAL OVERRIDES
+   ========================= */
+
+/* Botones (MDC) */
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-unelevated-button.mat-primary {
+  background: linear-gradient(90deg, var(--primary), rgba(124, 77, 255, 0.75)) !important;
+  color: #fff !important;
+  border-radius: 14px !important;
+  height: 48px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 18px rgba(124, 77, 255, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mat-mdc-raised-button.mat-primary:hover,
+.mat-mdc-unelevated-button.mat-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(124, 77, 255, 0.55);
+}
+
+/* Inputs outline (más “dark”) */
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-outline-color: rgba(124, 77, 255, 0.35);
+  --mdc-outlined-text-field-focus-outline-color: rgba(0, 229, 255, 0.55);
+  --mdc-outlined-text-field-label-text-color: rgba(234, 234, 240, 0.75);
+  --mdc-outlined-text-field-input-text-color: rgba(234, 234, 240, 0.95);
+}
+
+/* Menús */
+.mat-mdc-menu-panel {
+  background: #0f1530 !important;
+  border: 1px solid rgba(124, 77, 255, 0.25);
+}
+
+/* Snackbar/Toastr no se toca aquí, ya lo maneja Toastr */

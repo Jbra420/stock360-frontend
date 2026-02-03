@@ -1,0 +1,105 @@
+<div class="form-container">
+
+  <div class="page-header">
+    <button mat-icon-button routerLink="/productos">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>{{ isEditing ? 'Editar' : 'Nuevo' }} Producto</h1>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+
+      <form [formGroup]="productoForm" (ngSubmit)="guardar()">
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Código *</mat-label>
+            <input matInput formControlName="codigo">
+            <mat-error *ngIf="productoForm.get('codigo')?.invalid">
+              Código requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Categoría</mat-label>
+            <mat-select formControlName="categoria_id">
+              <mat-option [value]="null">Sin categoría</mat-option>
+              <mat-option *ngFor="let cat of categorias" [value]="cat.id">
+                {{ cat.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre *</mat-label>
+          <input matInput formControlName="nombre">
+          <mat-error *ngIf="productoForm.get('nombre')?.invalid">
+            Nombre requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput rows="3" formControlName="descripcion"></textarea>
+        </mat-form-field>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Talla</mat-label>
+            <input matInput formControlName="talla">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Color</mat-label>
+            <input matInput formControlName="color">
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Precio Compra</mat-label>
+            <span matPrefix>$&nbsp;</span>
+            <input matInput type="number" formControlName="precio_compra">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Precio Venta</mat-label>
+            <span matPrefix>$&nbsp;</span>
+            <input matInput type="number" formControlName="precio_venta">
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Stock Inicial</mat-label>
+            <input matInput type="number" formControlName="stock_inicial">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Stock Mínimo</mat-label>
+            <input matInput type="number" formControlName="stock_minimo">
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Tag RFID</mat-label>
+          <input matInput formControlName="rfid_tag">
+        </mat-form-field>
+
+        <div class="form-actions">
+          <button mat-button type="button" routerLink="/productos">
+            Cancelar
+          </button>
+          <button mat-raised-button color="primary" type="submit">
+            Guardar
+          </button>
+        </div>
+
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+
+</div>
